@@ -11,6 +11,10 @@ This seems to be complicated stuff. Not super well documented.
 # first install kernel tree
 rpi-source --skip-gcc
 
+# make sure these symlinks exists
+sudo ln -s /home/USER/linux /lib/modules/$(uname -r)/build
+sudo ln -s /home/USER/linux /lib/modules/$(uname -r)/source
+
 # check makefile for details
 make
 make install
