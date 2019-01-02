@@ -9,3 +9,6 @@ all:
 
 clean:
 	make -C /lib/modules/$(shell uname -r)/build/ M=$(PWD) clean
+
+install: all
+	sudo cp i2s-soundcard.dtbo /boot/overlays/

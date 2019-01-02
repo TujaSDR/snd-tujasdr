@@ -6,22 +6,16 @@ This seems to be complicated stuff. Not super well documented.
 
 ## Building
 
+I'm working on a dkms version. For now you need a linux kernel source installed, I suggest using `rpi-update` and `rpi_source`.
+
+You need to install both the kernel module and the overlay.
+
 ```bash
-# building the driver
-# first install kernel tree
-rpi-source --skip-gcc
-
-# make sure these symlinks exists
-sudo ln -s /home/USER/linux /lib/modules/$(uname -r)/build
-sudo ln -s /home/USER/linux /lib/modules/$(uname -r)/source
-
-# check makefile for details
-make
-make install
-echo "dtoverlay=i2s-soundcard,master,alsaname=tujasdr" >> /boot/config.txt
+# put this line in /boot/config.txt
+dtoverlay=i2s-soundcard,master,alsaname=tujasdr
 ```
 
-## Good information regar
+## Good links regarding this stuff
 
 * https://www.raspberrypi.org/forums/viewtopic.php?t=173640
 * https://www.kernel.org/doc/Documentation/devicetree/bindings/sound/simple-card.txt
