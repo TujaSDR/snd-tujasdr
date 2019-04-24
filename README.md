@@ -8,11 +8,16 @@ This seems to be complicated stuff. Not super well documented.
 
 I'm working on a dkms version. For now you need a linux kernel source installed, I suggest using `rpi-update` and `rpi_source`.
 
+```bash
+cd src && sudo make install
+cd overlays && make install
+```
+
 You need to install both the kernel module and the overlay.
 
 ```bash
 # put this line in /boot/config.txt
-dtoverlay=i2s-soundcard,master,alsaname=tujasdr
+dtoverlay=tujasdr
 ```
 
 ## Good links regarding this stuff

@@ -20,12 +20,7 @@
 #include <sound/initval.h>
 #include <sound/tlv.h>
 
-#define TUJASDR_RATE_MIN 89000 /* Hz, from data sheet */
-#define TUJASDR_RATE_MAX 96000  /* Hz, from data sheet */
-
-// TODO: Define endianness? SNDRV_PCM_FMTBIT_S32_LE
 #define TUJASDR_FORMATS ( SNDRV_PCM_FMTBIT_S32 )
-
 
 static struct snd_soc_dai_driver tujasdr_dai = {
 	.name = "tujasdr-hifi",
@@ -33,21 +28,16 @@ static struct snd_soc_dai_driver tujasdr_dai = {
 		.stream_name = "Playback",
 		.channels_min = 2,
 		.channels_max = 2,
-		.rate_min = TUJASDR_RATE_MIN,
-		.rate_max = TUJASDR_RATE_MAX,
-		.rates = SNDRV_PCM_RATE_CONTINUOUS,
+        .rates = SNDRV_PCM_RATE_96000,
 		.formats = TUJASDR_FORMATS,
 	},
 	.capture = {
 		.stream_name = "Capture",
 		.channels_min = 2,
 		.channels_max = 2,
-		.rate_min = TUJASDR_RATE_MIN,
-		.rate_max = TUJASDR_RATE_MAX,
-		.rates = SNDRV_PCM_RATE_CONTINUOUS,
+        .rates = SNDRV_PCM_RATE_96000,
 		.formats = TUJASDR_FORMATS,
-	},
-    .symmetric_rates = 1,
+	}
 };
 
 static struct snd_soc_codec_driver tujasdr_codec_driver = {

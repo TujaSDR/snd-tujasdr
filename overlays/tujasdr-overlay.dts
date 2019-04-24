@@ -24,42 +24,23 @@
 
     fragment@2 {
         target = <&sound>;
-        master_overlay: __dormant__ {
+        __overlay__ {
             compatible = "simple-audio-card";
             simple-audio-card,format = "i2s";
-            simple-audio-card,name = "soundcard";
+            simple-audio-card,name = "tujasdr";
             simple-audio-card,bitclock-master = <&dailink0_master>;
             simple-audio-card,frame-master = <&dailink0_master>;
             status = "okay";
             simple-audio-card,cpu {
                 sound-dai = <&i2s>;
+                dai-tdm-slot-num = <2>;
+                // We are packing 32 bits in 44 bits
+                // This is because of clock reasons
+                dai-tdm-slot-width = <44>;
             };
             dailink0_master: simple-audio-card,codec {
                 sound-dai = <&card_codec>;
             };
         };
-    };
-
-    fragment@3 {
-        target = <&sound>;
-        slave_overlay: __overlay__ {
-                compatible = "simple-audio-card";
-                simple-audio-card,format = "i2s";
-                simple-audio-card,name = "soundcard";
-                status = "okay";
-                simple-audio-card,cpu {
-                    sound-dai = <&i2s>;
-                };
-                dailink0_slave: simple-audio-card,codec {
-                    sound-dai = <&card_codec>;
-                };
-        };
-    };
-
-    __overrides__ {
-        alsaname = <&master_overlay>,"simple-audio-card,name",
-                    <&slave_overlay>,"simple-audio-card,name";
-        compatible = <&card_codec>,"compatible"; /* probably remove this option */
-        master = <0>,"=2!3";
     };
 };

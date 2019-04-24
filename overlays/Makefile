@@ -1,6 +1,6 @@
 PWD := $(shell pwd)
 
-dtbo-y += i2s-soundcard.dtbo
+dtbo-y += tujasdr.dtbo
 targets += $(dtbo-y)
 always  := $(dtbo-y)
 
@@ -11,4 +11,4 @@ clean:
 	make -C /lib/modules/$(shell uname -r)/build/ M=$(PWD) clean
 
 install: all
-	sudo cp i2s-soundcard.dtbo /boot/overlays/
+	sudo cp tujasdr.dtbo /boot/overlays/
