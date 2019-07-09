@@ -11,4 +11,4 @@ clean:
 	make -C /lib/modules/$(shell uname -r)/build/ M=$(PWD) clean
 
 install: all
-	sudo cp tujasdr.dtbo /boot/overlays/
+	sudo cp tujasdr.dtbo /boot/firmware/overlays/
